@@ -22,6 +22,7 @@ type ModuleConfig = {
     title: string;
     excerpt: string;
     body?: string;
+    label?: string;
   }[];
   actions?: { label: string; href?: string; action?: ModuleKey }[];
 };
@@ -73,11 +74,36 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     ],
     viewportCards: [
       {
-        title: "Vibecoding this site",
+        title: "How I built this website",
         excerpt:
           "AI-assisted frontend work moved quickly and produced a working modular interface system.",
         body:
-          "This site was built through a fast, iterative vibecoding process using AI-assisted development. The goal was to recreate a modular, interactive interface inspired by early web design systems, but applied to policy work and institutional analysis. The system itself worked well: module-based navigation, staged transitions, and a persistent interface layer that frames all content. Where it broke down was in layout constraints. Overuse of viewport-based sizing and rigid containers caused the design to compress in production environments. The visual language also drifted at times as the model introduced its own framing concepts. The result reflects both the speed and the limits of AI-assisted frontend development."
+          "This site was built through a fast, iterative vibecoding process using AI-assisted development. The goal was to recreate a modular, interactive interface inspired by early web design systems, but applied to policy work and institutional analysis. The system itself worked well: module-based navigation, staged transitions, and a persistent interface layer that frames all content. Where it broke down was in layout constraints. Overuse of viewport-based sizing and rigid containers caused the design to compress in production environments. The visual language also drifted at times as the model introduced its own framing concepts. The result reflects both the speed and the limits of AI-assisted frontend development.",
+        label: "In-site project"
+      },
+      {
+        title: "Future work 01",
+        excerpt:
+          "Placeholder for a future project, essay, or build note that should live directly inside this module.",
+        body:
+          "Paste a new title, short excerpt, and optional body copy here when you want to add another native project bubble.",
+        label: "Placeholder"
+      },
+      {
+        title: "Future work 02",
+        excerpt:
+          "Placeholder for a second native project bubble that can hold writing, research, or a selected build.",
+        body:
+          "This is meant to be easy to edit later without redesigning the layout.",
+        label: "Placeholder"
+      },
+      {
+        title: "Future work 03",
+        excerpt:
+          "Placeholder for another project bubble you can turn into a live case study or note.",
+        body:
+          "Replace this text directly in the content array when you are ready.",
+        label: "Placeholder"
       }
     ],
     actions: [{ label: "View GovSearch", href: "https://gov-search.vercel.app/about" }]
@@ -359,9 +385,12 @@ export default function PortfolioInterface({
                 {currentModule.viewportCards?.length ? (
                   <div className="mt-8 grid gap-4 md:grid-cols-2">
                     {currentModule.viewportCards.map((card) => (
-                      <article key={card.title} className="glass-panel rounded-[24px] p-5">
+                      <article
+                        key={card.title}
+                        className="glass-panel rounded-[28px] border border-fuchsia-300/14 bg-[linear-gradient(180deg,rgba(31,16,56,0.5),rgba(11,15,33,0.72))] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_30px_rgba(149,76,255,0.06)]"
+                      >
                         <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-fuchsia-200/68">
-                          Native card
+                          {card.label ?? "Native project"}
                         </p>
                         <h3 className="mt-3 text-xl tracking-[-0.05em] text-slate-50">
                           {card.title}
