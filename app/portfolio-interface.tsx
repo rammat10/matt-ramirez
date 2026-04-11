@@ -18,7 +18,11 @@ type ModuleConfig = {
   background: string;
   asideTitle: string;
   asideBody: string[];
-  featuredItems?: { title: string; body: string[] }[];
+  viewportCards?: {
+    title: string;
+    excerpt: string;
+    body?: string;
+  }[];
   actions?: { label: string; href?: string; action?: ModuleKey }[];
 };
 
@@ -67,16 +71,13 @@ const modules: Record<ModuleKey, ModuleConfig> = {
       "BlueDot AI governance project received runner-up recognition.",
       "GovGPT secured a direct Andreessen Horowitz pitch."
     ],
-    featuredItems: [
+    viewportCards: [
       {
         title: "Vibecoding this site",
-        body: [
-          "This site was built through a fast, iterative vibecoding process using AI-assisted development.",
-          "The goal was to recreate a modular, interactive interface inspired by early web design systems, but applied to policy work and institutional analysis.",
-          "The system itself worked well: module-based navigation, staged transitions, and a persistent interface layer that frames all content.",
-          "Where it broke down was in layout constraints. Overuse of viewport-based sizing and rigid containers caused the design to compress in production environments. The visual language also drifted at times as the model introduced its own framing concepts.",
-          "The result reflects both the speed and the limits of AI-assisted frontend development."
-        ]
+        excerpt:
+          "AI-assisted frontend work moved quickly and produced a working modular interface system.",
+        body:
+          "This site was built through a fast, iterative vibecoding process using AI-assisted development. The goal was to recreate a modular, interactive interface inspired by early web design systems, but applied to policy work and institutional analysis. The system itself worked well: module-based navigation, staged transitions, and a persistent interface layer that frames all content. Where it broke down was in layout constraints. Overuse of viewport-based sizing and rigid containers caused the design to compress in production environments. The visual language also drifted at times as the model introduced its own framing concepts. The result reflects both the speed and the limits of AI-assisted frontend development."
       }
     ],
     actions: [{ label: "View GovSearch", href: "https://gov-search.vercel.app/about" }]
@@ -98,6 +99,36 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     asideBody: [
       "Built to hold featured essays and shorter signals.",
       "Designed to stay inside the interface rather than break out into a generic blog layout."
+    ],
+    viewportCards: [
+      {
+        title: "Metaverse writing",
+        excerpt:
+          "Reserved for Facebook-era writing on the metaverse, governance, and how virtual systems became public policy objects.",
+        body:
+          "Use this slot for longer writing with publication details, date, and a short framing note."
+      },
+      {
+        title: "Policy essay",
+        excerpt:
+          "Reserved for a sharper essay on institutions, platforms, and the edge where product choices turn political.",
+        body:
+          "This can hold a summary, opening excerpt, or a placeholder paragraph until the final text is ready."
+      },
+      {
+        title: "Project note",
+        excerpt:
+          "Reserved for shorter notes tied to specific projects, launches, or research threads.",
+        body:
+          "Good place for small observations, build notes, or analysis that should not disappear into a long archive."
+      },
+      {
+        title: "Writing 04",
+        excerpt:
+          "Reserved for future essays, commentary, or public notes that belong in the interface as first-class content.",
+        body:
+          "Easy to replace later by pasting in a new title, excerpt, and body text here."
+      }
     ],
     actions: [{ label: "Go to writing route", href: "/writing" }]
   },
@@ -371,6 +402,27 @@ export default function PortfolioInterface({
                     ))}
                   </div>
                 ) : null}
+
+                {currentModule.viewportCards?.length ? (
+                  <div className="mt-8 grid gap-4 md:grid-cols-2">
+                    {currentModule.viewportCards.map((card) => (
+                      <article key={card.title} className="glass-panel rounded-[24px] p-5">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-fuchsia-200/68">
+                          Native card
+                        </p>
+                        <h3 className="mt-3 text-xl tracking-[-0.05em] text-slate-50">
+                          {card.title}
+                        </h3>
+                        <p className="mt-3 text-sm leading-6 text-slate-300/80">
+                          {card.excerpt}
+                        </p>
+                        {card.body ? (
+                          <p className="mt-4 text-sm leading-6 text-slate-300/68">{card.body}</p>
+                        ) : null}
+                      </article>
+                    ))}
+                  </div>
+                ) : null}
               </motion.div>
             </AnimatePresence>
 
@@ -384,15 +436,21 @@ export default function PortfolioInterface({
                 className="glass-panel rounded-[28px] p-4 lg:min-h-[360px]"
               >
                 {currentModule.key === "profile" ? (
-                  <div className="overflow-hidden rounded-[22px] border border-slate-200/10">
-                    <Image
-                      src="/matt-ramirez-headshot.jpg"
-                      alt="Matt Ramirez"
-                      width={760}
-                      height={760}
-                      priority
-                      className="h-full max-h-[420px] w-full object-cover lg:max-h-[380px]"
-                    />
+                  <div>
+                    <div className="overflow-hidden rounded-[22px] border border-slate-200/10">
+                      <Image
+                        src="/matt-ramirez-headshot.jpg"
+                        alt="Matt Ramirez"
+                        width={760}
+                        height={760}
+                        priority
+                        className="h-full max-h-[420px] w-full object-cover lg:max-h-[380px]"
+                      />
+                    </div>
+                    <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-fuchsia-300/18 bg-fuchsia-400/10 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.24em] text-fuchsia-100/82 shadow-[0_0_20px_rgba(232,73,172,0.1)]">
+                      <span className="h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(94,220,255,0.55)]" />
+                      online now!
+                    </div>
                   </div>
                 ) : null}
                 <div className={currentModule.key === "profile" ? "mt-4" : ""}>
@@ -404,51 +462,9 @@ export default function PortfolioInterface({
                       <p key={item}>{item}</p>
                     ))}
                   </div>
-                  {currentModule.featuredItems?.length ? (
-                    <div className="mt-6 space-y-4 border-t border-slate-200/10 pt-5">
-                      {currentModule.featuredItems.map((item) => (
-                        <div key={item.title} className="space-y-3">
-                          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-cyan-200/70">
-                            {item.title}
-                          </p>
-                          {item.body.map((paragraph) => (
-                            <p key={paragraph} className="text-sm leading-6 text-slate-300/78">
-                              {paragraph}
-                            </p>
-                          ))}
-                        </div>
-                      ))}
-                    </div>
-                  ) : null}
                 </div>
               </motion.aside>
             </AnimatePresence>
-          </div>
-        </div>
-
-        <div
-          className="glass-panel panel-edge flex items-center justify-between gap-3 overflow-hidden rounded-[20px] px-4 py-3"
-          style={{
-            backgroundImage:
-              "linear-gradient(180deg, rgba(10,17,28,0.82), rgba(10,17,28,0.72)), url('/reference/ui-navbar-background.png')",
-            backgroundRepeat: "repeat-x",
-            backgroundPosition: "center"
-          }}
-        >
-          <div className="font-mono text-[10px] uppercase tracking-[0.26em] text-slate-300/60">
-            active viewport / {modules[activeModule].stateLabel}
-          </div>
-          <div className="flex items-center gap-3">
-            <Image
-              src="/reference/down-arrow.png"
-              alt=""
-              width={18}
-              height={10}
-              className="opacity-70"
-            />
-            <div className="font-mono text-[10px] uppercase tracking-[0.26em] text-cyan-200/66">
-              lower modules persistent
-            </div>
           </div>
         </div>
 
