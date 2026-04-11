@@ -158,8 +158,7 @@ const modules: Record<ModuleKey, ModuleConfig> = {
         body:
           "Easy to replace later by pasting in a new title, excerpt, and body text here."
       }
-    ],
-    actions: [{ label: "Go to writing route", href: "/writing" }]
+    ]
   },
   contact: {
     key: "contact",
@@ -260,6 +259,7 @@ export default function PortfolioInterface({
   };
 
   const currentModule = useMemo(() => modules[displayModule], [displayModule]);
+  const showAside = currentModule.key === "profile";
 
   return (
     <main className="interface-grid relative min-h-screen px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-7 xl:px-10">
@@ -347,7 +347,13 @@ export default function PortfolioInterface({
             ) : null}
           </AnimatePresence>
 
-          <div className="relative z-10 grid gap-6 px-5 py-5 sm:px-7 sm:py-7 lg:grid-cols-[minmax(0,2.15fr)_minmax(280px,0.85fr)] xl:grid-cols-[minmax(0,2.35fr)_minmax(300px,0.8fr)]">
+          <div
+            className={`relative z-10 grid gap-6 px-5 py-5 sm:px-7 sm:py-7 ${
+              showAside
+                ? "lg:grid-cols-[minmax(0,2.15fr)_minmax(280px,0.85fr)] xl:grid-cols-[minmax(0,2.35fr)_minmax(300px,0.8fr)]"
+                : ""
+            }`}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentModule.key}
@@ -423,16 +429,16 @@ export default function PortfolioInterface({
               </motion.div>
             </AnimatePresence>
 
-            <AnimatePresence mode="wait">
-              <motion.aside
-                key={`${currentModule.key}-aside`}
-                initial={{ opacity: 0, x: 28 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -24 }}
-                transition={{ duration: 0.24, ease: "linear", delay: 0.05 }}
-                className="glass-panel rounded-[28px] p-4 lg:min-h-[360px]"
-              >
-                {currentModule.key === "profile" ? (
+            {showAside ? (
+              <AnimatePresence mode="wait">
+                <motion.aside
+                  key={`${currentModule.key}-aside`}
+                  initial={{ opacity: 0, x: 28 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -24 }}
+                  transition={{ duration: 0.24, ease: "linear", delay: 0.05 }}
+                  className="glass-panel rounded-[28px] p-4 lg:min-h-[360px]"
+                >
                   <div>
                     <div className="overflow-hidden rounded-[22px] border border-slate-200/10">
                       <Image
@@ -449,19 +455,19 @@ export default function PortfolioInterface({
                       online now!
                     </div>
                   </div>
-                ) : null}
-                <div className={currentModule.key === "profile" ? "mt-4" : ""}>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-fuchsia-200/68">
-                    {currentModule.asideTitle}
-                  </p>
-                  <div className="mt-4 space-y-3 text-sm leading-6 text-slate-300/80">
-                    {currentModule.asideBody.map((item) => (
-                      <p key={item}>{item}</p>
-                    ))}
+                  <div className="mt-4">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-fuchsia-200/68">
+                      {currentModule.asideTitle}
+                    </p>
+                    <div className="mt-4 space-y-3 text-sm leading-6 text-slate-300/80">
+                      {currentModule.asideBody.map((item) => (
+                        <p key={item}>{item}</p>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </motion.aside>
-            </AnimatePresence>
+                </motion.aside>
+              </AnimatePresence>
+            ) : null}
           </div>
         </div>
 
