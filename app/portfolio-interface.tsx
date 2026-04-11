@@ -18,6 +18,7 @@ type ModuleConfig = {
   background: string;
   asideTitle: string;
   asideBody: string[];
+  featuredItems?: { title: string; body: string[] }[];
   actions?: { label: string; href?: string; action?: ModuleKey }[];
 };
 
@@ -66,6 +67,18 @@ const modules: Record<ModuleKey, ModuleConfig> = {
       "BlueDot AI governance project received runner-up recognition.",
       "GovGPT secured a direct Andreessen Horowitz pitch."
     ],
+    featuredItems: [
+      {
+        title: "Vibecoding this site",
+        body: [
+          "This site was built through a fast, iterative vibecoding process using AI-assisted development.",
+          "The goal was to recreate a modular, interactive interface inspired by early web design systems, but applied to policy work and institutional analysis.",
+          "The system itself worked well: module-based navigation, staged transitions, and a persistent interface layer that frames all content.",
+          "Where it broke down was in layout constraints. Overuse of viewport-based sizing and rigid containers caused the design to compress in production environments. The visual language also drifted at times as the model introduced its own framing concepts.",
+          "The result reflects both the speed and the limits of AI-assisted frontend development."
+        ]
+      }
+    ],
     actions: [{ label: "View GovSearch", href: "https://gov-search.vercel.app/about" }]
   },
   writing: {
@@ -112,24 +125,48 @@ const modules: Record<ModuleKey, ModuleConfig> = {
 
 const lowerPanels = [
   {
+    kind: "link" as const,
     title: "Congress",
     summary: "First blockchain and crypto memo for Speaker Pelosi and leadership.",
     module: "work" as ModuleKey
   },
   {
+    kind: "link" as const,
     title: "Meta",
     summary: "Front-line content policy from the post-Trump period through the Ukraine war.",
     module: "work" as ModuleKey
   },
   {
+    kind: "link" as const,
     title: "TikTok",
     summary: "2024 U.S. election, Canadian election, misinformation, and global AIGC launch.",
     module: "work" as ModuleKey
   },
   {
+    kind: "link" as const,
     title: "GovSearch",
     summary: "BlueDot runner-up. Retrieval-based AI for congressional legislation.",
     module: "work" as ModuleKey
+  },
+  {
+    kind: "static" as const,
+    title: "Writing 01",
+    summary: "Reserved for metaverse writing, essays, or policy notes."
+  },
+  {
+    kind: "static" as const,
+    title: "Writing 02",
+    summary: "Reserved for metaverse writing, essays, or policy notes."
+  },
+  {
+    kind: "static" as const,
+    title: "Writing 03",
+    summary: "Reserved for metaverse writing, essays, or policy notes."
+  },
+  {
+    kind: "static" as const,
+    title: "Writing 04",
+    summary: "Reserved for metaverse writing, essays, or policy notes."
   }
 ];
 
@@ -367,6 +404,22 @@ export default function PortfolioInterface({
                       <p key={item}>{item}</p>
                     ))}
                   </div>
+                  {currentModule.featuredItems?.length ? (
+                    <div className="mt-6 space-y-4 border-t border-slate-200/10 pt-5">
+                      {currentModule.featuredItems.map((item) => (
+                        <div key={item.title} className="space-y-3">
+                          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-cyan-200/70">
+                            {item.title}
+                          </p>
+                          {item.body.map((paragraph) => (
+                            <p key={paragraph} className="text-sm leading-6 text-slate-300/78">
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </motion.aside>
             </AnimatePresence>
@@ -406,19 +459,32 @@ export default function PortfolioInterface({
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(10,16,26,0.82),rgba(10,16,26,0.74))]" />
           <div className="relative grid gap-3 md:grid-cols-2 2xl:grid-cols-4">
             {lowerPanels.map((panel, index) => (
-              <motion.button
+              <motion.div
                 key={panel.title}
                 initial={{ opacity: 0, x: 24 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.24, ease: "linear", delay: 0.16 + index * 0.06 }}
-                onClick={() => activateModule(panel.module)}
-                className="glass-panel rounded-[20px] p-4 text-left transition-transform hover:-translate-y-0.5 md:min-h-[118px]"
+                className="md:min-h-[118px]"
               >
-                <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-fuchsia-200/66">
-                  {panel.title}
-                </p>
-                <p className="mt-3 text-sm leading-6 text-slate-200/82">{panel.summary}</p>
-              </motion.button>
+                {panel.kind === "link" ? (
+                  <button
+                    onClick={() => activateModule(panel.module)}
+                    className="glass-panel h-full w-full rounded-[20px] p-4 text-left transition-transform hover:-translate-y-0.5"
+                  >
+                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-fuchsia-200/66">
+                      {panel.title}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-slate-200/82">{panel.summary}</p>
+                  </button>
+                ) : (
+                  <div className="glass-panel h-full rounded-[20px] p-4 text-left">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-cyan-200/66">
+                      {panel.title}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-slate-200/82">{panel.summary}</p>
+                  </div>
+                )}
+              </motion.div>
             ))}
           </div>
         </div>
