@@ -48,10 +48,6 @@ const modules: Record<ModuleKey, ModuleConfig> = {
       "AI governance, elections, trust and safety",
       "Washington fluency with product instincts",
       "Internet culture, institutions, political economy"
-    ],
-    actions: [
-      { label: "Open work", action: "work" },
-      { label: "Open writing", action: "writing" }
     ]
   },
   work: {
@@ -184,8 +180,7 @@ const modules: Record<ModuleKey, ModuleConfig> = {
 
 const footerLinks = [
   { label: "Email", href: "mailto:matt.m.ram@gmail.com" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" },
-  { label: "GovSearch", href: "https://gov-search.vercel.app/about" }
+  { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" }
 ];
 
 function ExternalOrInternalAction({
