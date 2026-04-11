@@ -154,53 +154,6 @@ const modules: Record<ModuleKey, ModuleConfig> = {
   }
 };
 
-const lowerPanels = [
-  {
-    kind: "link" as const,
-    title: "Congress",
-    summary: "First blockchain and crypto memo for Speaker Pelosi and leadership.",
-    module: "work" as ModuleKey
-  },
-  {
-    kind: "link" as const,
-    title: "Meta",
-    summary: "Front-line content policy from the post-Trump period through the Ukraine war.",
-    module: "work" as ModuleKey
-  },
-  {
-    kind: "link" as const,
-    title: "TikTok",
-    summary: "2024 U.S. election, Canadian election, misinformation, and global AIGC launch.",
-    module: "work" as ModuleKey
-  },
-  {
-    kind: "link" as const,
-    title: "GovSearch",
-    summary: "BlueDot runner-up. Retrieval-based AI for congressional legislation.",
-    module: "work" as ModuleKey
-  },
-  {
-    kind: "static" as const,
-    title: "Writing 01",
-    summary: "Reserved for metaverse writing, essays, or policy notes."
-  },
-  {
-    kind: "static" as const,
-    title: "Writing 02",
-    summary: "Reserved for metaverse writing, essays, or policy notes."
-  },
-  {
-    kind: "static" as const,
-    title: "Writing 03",
-    summary: "Reserved for metaverse writing, essays, or policy notes."
-  },
-  {
-    kind: "static" as const,
-    title: "Writing 04",
-    summary: "Reserved for metaverse writing, essays, or policy notes."
-  }
-];
-
 const footerLinks = [
   { label: "Email", href: "mailto:matt.m.ram@gmail.com" },
   { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" },
@@ -465,43 +418,6 @@ export default function PortfolioInterface({
                 </div>
               </motion.aside>
             </AnimatePresence>
-          </div>
-        </div>
-
-        <div
-          className="glass-panel panel-edge relative rounded-[26px] px-4 py-4 sm:px-5"
-          style={{ backgroundImage: "url('/reference/ui-lower-panel-bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}
-        >
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(10,16,26,0.82),rgba(10,16,26,0.74))]" />
-          <div className="relative grid gap-3 md:grid-cols-2 2xl:grid-cols-4">
-            {lowerPanels.map((panel, index) => (
-              <motion.div
-                key={panel.title}
-                initial={{ opacity: 0, x: 24 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.24, ease: "linear", delay: 0.16 + index * 0.06 }}
-                className="md:min-h-[118px]"
-              >
-                {panel.kind === "link" ? (
-                  <button
-                    onClick={() => activateModule(panel.module)}
-                    className="glass-panel h-full w-full rounded-[20px] p-4 text-left transition-transform hover:-translate-y-0.5"
-                  >
-                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-fuchsia-200/66">
-                      {panel.title}
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-slate-200/82">{panel.summary}</p>
-                  </button>
-                ) : (
-                  <div className="glass-panel h-full rounded-[20px] p-4 text-left">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-cyan-200/66">
-                      {panel.title}
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-slate-200/82">{panel.summary}</p>
-                  </div>
-                )}
-              </motion.div>
-            ))}
           </div>
         </div>
 
