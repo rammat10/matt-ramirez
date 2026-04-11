@@ -23,6 +23,8 @@ type ModuleConfig = {
     excerpt: string;
     body?: string;
     label?: string;
+    href?: string;
+    ctaLabel?: string;
   }[];
   actions?: { label: string; href?: string; action?: ModuleKey }[];
 };
@@ -82,12 +84,14 @@ const modules: Record<ModuleKey, ModuleConfig> = {
         label: "In-site project"
       },
       {
-        title: "Future work 01",
+        title: "GovSearch",
         excerpt:
-          "Placeholder for a future project, essay, or build note that should live directly inside this module.",
+          "Use this card for your GovSearch write-up, including what the tool does, why you built it, and what made it notable.",
         body:
-          "Paste a new title, short excerpt, and optional body copy here when you want to add another native project bubble.",
-        label: "Placeholder"
+          "Placeholder copy: GovSearch is a retrieval-based AI tool for congressional legislation. Add your own framing here about the problem, the interface, the technical approach, the BlueDot runner-up recognition, and what the project revealed about the limits of AI systems in practice.",
+        label: "Project bubble",
+        href: "https://gov-search.vercel.app/about",
+        ctaLabel: "View GovSearch"
       },
       {
         title: "Future work 02",
@@ -105,8 +109,7 @@ const modules: Record<ModuleKey, ModuleConfig> = {
           "Replace this text directly in the content array when you are ready.",
         label: "Placeholder"
       }
-    ],
-    actions: [{ label: "View GovSearch", href: "https://gov-search.vercel.app/about" }]
+    ]
   },
   writing: {
     key: "writing",
@@ -400,6 +403,18 @@ export default function PortfolioInterface({
                         </p>
                         {card.body ? (
                           <p className="mt-4 text-sm leading-6 text-slate-300/68">{card.body}</p>
+                        ) : null}
+                        {card.href ? (
+                          <div className="mt-5">
+                            <a
+                              className="inline-flex rounded-full border border-fuchsia-300/16 bg-white/[0.06] px-4 py-2.5 text-sm text-slate-100 transition-colors hover:border-cyan-300/24 hover:bg-white/10"
+                              href={card.href}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {card.ctaLabel ?? "Open link"}
+                            </a>
+                          </div>
                         ) : null}
                       </article>
                     ))}
