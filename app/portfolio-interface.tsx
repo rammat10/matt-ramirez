@@ -36,9 +36,9 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     stateLabel: "profile.active",
     title: "I turn policy into decisions that scale",
     intro:
-      "I lead Misinformation product policy at TikTok. Former Meta and Advisor to Speaker Pelosi.",
+      "Currently leading Misinformation policy at TikTok. Former Facebook and Advisor to Speaker Pelosi.",
     body: [
-      "I build AI systems to understand how they fail",
+      "",
     ],
     accent: "Meet Matt",
     background: "/reference/profile-background.png",
@@ -53,13 +53,13 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     key: "work",
     navLabel: "Work",
     stateLabel: "work.module",
-    title: "Work with real political and product consequences.",
+    title: "Work",
     intro:
-      "This module holds the short list that best explains the shape of the work.",
+      "A few things I have worked on.",
     body: [
-      "Wrote the first blockchain and crypto memo for Speaker Pelosi and congressional leadership.",
+      "Wrote the first blockchain and crypto memo for Speaker Pelosi and House leadership.",
       "Worked on the front lines of Facebook content policy from the post-Trump period through the Ukraine war.",
-      "At TikTok, worked on the 2024 U.S. election, the Canadian election, misinformation, and the launch of AIGC tools globally."
+      "At TikTok, worked on the 2024/26 U.S. election, the Canadian election, misinformation, and the launch of major global initiatives."
     ],
     accent: "Selected work",
     background: "/reference/home-background.png",
