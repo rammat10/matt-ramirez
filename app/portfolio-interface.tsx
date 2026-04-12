@@ -34,9 +34,9 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     key: "profile",
     navLabel: "Profile",
     stateLabel: "profile.active",
-    title: "I make policy usable for systems that have to make decisions at scale",
+    title: "I turn policy into decisions that scale",
     intro:
-      "I lead Misinformation product policy at TikTok. Former Facebook and Advisor to House Speaker Nancy Pelosi.",
+      "I lead Misinformation product policy at TikTok. Former Meta and Advisor to Speaker Pelosi.",
     body: [
       "I build AI systems to understand how they fail",
     ],
