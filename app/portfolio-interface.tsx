@@ -45,7 +45,6 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     asideTitle: "Live profile",
     asideBody: [
       "AI governance, elections, trust and safety",
-      "Washington fluency with product instincts",
       "Internet culture, institutions, political economy"
     ]
   },
@@ -75,7 +74,7 @@ const modules: Record<ModuleKey, ModuleConfig> = {
         excerpt:
           "AI-assisted frontend work moved quickly and produced a working modular interface system.",
         body:
-          "This site was built through a fast, iterative vibecoding process using AI-assisted development. The goal was to recreate a modular, interactive interface inspired by early web design systems, but applied to policy work and institutional analysis. The system itself worked well: module-based navigation, staged transitions, and a persistent interface layer that frames all content. Where it broke down was in layout constraints. Overuse of viewport-based sizing and rigid containers caused the design to compress in production environments. The visual language also drifted at times as the model introduced its own framing concepts. The result reflects both the speed and the limits of AI-assisted frontend development.",
+          "I built this site quickly using Codex to write and adjust the code as I went.It runs on Next.js and React for the structure, Tailwind for styling, and Framer Motion for animations. For the design, I referenced another interface-style site and used it as a guide, then worked with AI to translate that look here. I also added a small interactive entry. Instead of a normal landing page, the site starts with a turing test-like question and a few choices. It is fast and flexible to build this way, but it lacks design talent and still needs human judgment to keep things consistent and working properly.",
         label: "In-site project"
       },
       {
