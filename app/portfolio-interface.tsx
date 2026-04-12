@@ -34,14 +34,13 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     key: "profile",
     navLabel: "Profile",
     stateLabel: "profile.active",
-    title: "Washington literacy for the internet. Internet literacy for power.",
+    title: "I make policy usable for systems that have to make decisions at scale",
     intro:
-      "Matt Ramirez works where platforms, institutions, and public consequence start pressing on each other.",
+      "I lead Misinformation product policy at TikTok. Former Facebook and Advisor to House Speaker Nancy Pelosi.",
     body: [
-      "His background spans congressional leadership, front-line platform policy, elections, misinformation, and AI systems.",
-      "The through line is power, timing, and how technical systems shape governance in practice."
+      "I build AI systems to understand how they fail",
     ],
-    accent: "Policy systems",
+    accent: "Meet Matt",
     background: "/reference/profile-background.png",
     asideTitle: "Live profile",
     asideBody: [
