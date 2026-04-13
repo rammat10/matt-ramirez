@@ -351,20 +351,38 @@ export default function PortfolioInterface({
                       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-center gap-4">
                           <svg
-                            viewBox="0 0 96 96"
+                            viewBox="0 0 120 140"
                             aria-hidden="true"
-                            className="h-16 w-16 text-cyan-200/88"
+                            className="h-20 w-20 text-slate-50"
                           >
-                            <g fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                              <circle cx="46" cy="43" r="22" opacity="0.9" />
-                              <path d="M25 40 C32 34, 38 33, 45 36 C51 39, 55 45, 62 46 C68 47, 72 45, 77 40" opacity="0.7" />
-                              <path d="M24 48 C31 46, 36 48, 40 52 C45 56, 49 59, 57 60 C64 61, 71 58, 77 52" opacity="0.78" />
-                              <path d="M36 22 C35 29, 37 35, 41 40" opacity="0.6" />
-                              <path d="M52 22 C55 28, 55 34, 53 41" opacity="0.6" />
-                              <path d="M34 64 C36 69, 39 73, 44 76" opacity="0.7" />
-                              <path d="M48 63 C50 69, 49 74, 46 81" />
-                              <path d="M58 61 C61 67, 61 74, 56 82" />
-                              <path d="M69 56 C72 61, 72 69, 66 77" opacity="0.75" />
+                            <g
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M60 10 C31 10 18 34 18 61 C18 81 24 98 33 112 C37 118 43 123 48 125 C53 127 56 132 58 137 C59 139 61 139 62 137 C64 132 67 127 72 125 C77 123 83 118 87 112 C96 98 102 81 102 61 C102 34 89 10 60 10 Z" />
+                              <path d="M60 10 L60 137" />
+                              <path d="M48 11 C44 26 42 44 42 61 C42 92 49 117 60 137" />
+                              <path d="M72 11 C76 26 78 44 78 61 C78 92 71 117 60 137" />
+                              <path d="M35 18 C28 31 24 45 24 61 C24 81 29 98 36 111" />
+                              <path d="M85 18 C92 31 96 45 96 61 C96 81 91 98 84 111" />
+                              <path d="M27 28 C36 22 47 19 60 19 C73 19 84 22 93 28" />
+                              <path d="M20 41 C31 33 45 29 60 29 C75 29 89 33 100 41" />
+                              <path d="M18 54 C30 46 44 42 60 42 C76 42 90 46 102 54" />
+                              <path d="M18 67 C30 61 44 58 60 58 C76 58 90 61 102 67" />
+                              <path d="M21 79 C31 75 44 73 60 73 C76 73 89 75 99 79" />
+                              <path d="M25 90 C34 88 46 87 60 87 C74 87 86 88 95 90" />
+                              <path d="M29 100 C38 99 48 99 60 99 C72 99 82 99 91 100" />
+                              <path d="M31 108 C39 108 49 109 60 109 C71 109 81 108 89 108" />
+                              <path d="M18 61 C20 66 22 75 24 84 C25 89 27 92 30 90 C33 88 35 89 36 94 C38 101 42 103 47 99 C51 96 55 96 57 104 C58 111 60 121 60 137" />
+                              <path d="M102 61 C100 66 98 75 96 84 C95 89 93 92 90 90 C87 88 85 89 84 94 C82 101 78 103 73 99 C69 96 65 96 63 104 C62 111 60 121 60 137" />
+                              <path d="M33 112 C37 111 41 110 46 111 C50 112 54 117 57 125" />
+                              <path d="M87 112 C83 111 79 110 74 111 C70 112 66 117 63 125" />
+                              <path d="M42 61 C46 60 50 59 60 59 C70 59 74 60 78 61" />
+                              <path d="M41 74 C46 72 51 71 60 71 C69 71 74 72 79 74" />
+                              <path d="M42 87 C47 85 52 84 60 84 C68 84 73 85 78 87" />
                             </g>
                           </svg>
                           <div>
