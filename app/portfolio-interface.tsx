@@ -34,7 +34,7 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     key: "profile",
     navLabel: "Profile",
     stateLabel: "profile.active",
-    title: "I turn policy into decisions that scale.",
+    title: "Trust at scale.",
     intro:
       "Currently leading Misinformation policy at TikTok. Former Facebook and Advisor to Speaker Pelosi.",
     body: [
@@ -228,7 +228,7 @@ export default function PortfolioInterface({
                   Matt Ramirez / Interface
                 </p>
                 <p className="mt-2 text-xl tracking-[-0.04em] text-[var(--ink)] sm:text-2xl">
-                  Policy systems, platforms, elections, AI governance.
+                  Policy, platforms, AI governance.
                 </p>
               </div>
               <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)]">
