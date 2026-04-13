@@ -1,9 +1,9 @@
 import PortfolioInterface from "../portfolio-interface";
 
 export const metadata = {
-  title: "Writing | Matt Ramirez",
+  title: "Slopworld | Matt Ramirez",
   description:
-    "Archive channel for Matt Ramirez's writing on platforms, governance, and public questions."
+    "Slopworld is Matt Ramirez's newsletter module."
 };
 
 export default function WritingPage() {
