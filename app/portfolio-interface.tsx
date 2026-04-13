@@ -107,50 +107,24 @@ const modules: Record<ModuleKey, ModuleConfig> = {
   },
   writing: {
     key: "writing",
-    navLabel: "Writing",
-    stateLabel: "writing.archive",
-    title: "A dedicated writing channel, not a buried section.",
+    navLabel: "Slopworld",
+    stateLabel: "slopworld.feed",
+    title: "Slopworld",
     intro:
-      "This viewport is reserved for metaverse writing, essays, notes, and any public-facing work that should be surfaced with context.",
-    body: [
-      "Use this module for Facebook-era metaverse writing, platform policy essays, and shorter notes.",
-      "The architecture is ready for titles, publication dates, excerpts, and outbound links without turning the page into a scroll dump."
-    ],
-    accent: "Writing archive",
+      "Get my newsletter delivered to your inbox.",
+    body: [],
+    accent: "Newsletter module",
     background: "/reference/profile-background.png",
-    asideTitle: "Archive notes",
-    asideBody: [
-      "Built to hold featured essays and shorter signals.",
-      "Designed to stay inside the interface rather than break out into a generic blog layout."
-    ],
+    asideTitle: "",
+    asideBody: [],
     viewportCards: [
       {
-        title: "Metaverse writing",
+        title: "Slopworld",
         excerpt:
-          "Reserved for Facebook-era writing on the metaverse, governance, and how virtual systems became public policy objects.",
+          "A newsletter tile inside the interface. Weird, plainspoken, and sent straight to your inbox.",
         body:
-          "Use this slot for longer writing with publication details, date, and a short framing note."
-      },
-      {
-        title: "Policy essay",
-        excerpt:
-          "Reserved for a sharper essay on institutions, platforms, and the edge where product choices turn political.",
-        body:
-          "This can hold a summary, opening excerpt, or a placeholder paragraph until the final text is ready."
-      },
-      {
-        title: "Project note",
-        excerpt:
-          "Reserved for shorter notes tied to specific projects, launches, or research threads.",
-        body:
-          "Good place for small observations, build notes, or analysis that should not disappear into a long archive."
-      },
-      {
-        title: "Writing 04",
-        excerpt:
-          "Reserved for future essays, commentary, or public notes that belong in the interface as first-class content.",
-        body:
-          "Easy to replace later by pasting in a new title, excerpt, and body text here."
+          "Substack module for notes, signals, and whatever survives contact with the feed.",
+        label: "Publication"
       }
     ]
   },
@@ -359,32 +333,83 @@ export default function PortfolioInterface({
                 <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-cyan-200/70">
                   {currentModule.accent}
                 </p>
-                <h1 className="mt-4 text-4xl font-medium tracking-[-0.08em] text-slate-50 sm:text-5xl lg:max-w-[16ch] lg:text-[4.35rem] xl:text-[4.9rem]">
+                <h1 className={`mt-4 font-medium tracking-[-0.08em] text-slate-50 sm:text-5xl ${
+                  currentModule.key === "writing"
+                    ? "text-4xl lg:text-[3.7rem] xl:text-[4.2rem]"
+                    : "text-4xl lg:max-w-[16ch] lg:text-[4.35rem] xl:text-[4.9rem]"
+                }`}>
                   {currentModule.title}
                 </h1>
-                <p className="mt-5 max-w-[70ch] text-base leading-7 text-slate-300/82 sm:text-lg xl:text-[1.15rem]">
+                <p className={`mt-5 text-base leading-7 text-slate-300/82 sm:text-lg xl:text-[1.15rem] ${
+                  currentModule.key === "writing" ? "max-w-[38ch]" : "max-w-[70ch]"
+                }`}>
                   {currentModule.intro}
                 </p>
-                <div className="mt-6 grid gap-4">
-                  {currentModule.body.map((paragraph) => (
-                    <p key={paragraph} className="max-w-[76ch] text-base leading-7 text-slate-300/78 xl:text-[1.05rem]">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-                {currentModule.actions?.length ? (
-                  <div className="mt-7 flex flex-wrap gap-3">
-                    {currentModule.actions.map((item) => (
-                      <ExternalOrInternalAction
-                        key={item.label}
-                        item={item}
-                        onAction={activateModule}
-                      />
-                    ))}
+                {currentModule.key === "writing" ? (
+                  <div className="mt-8 max-w-[620px]">
+                    <article className="glass-panel rounded-[30px] border border-fuchsia-300/14 bg-[linear-gradient(180deg,rgba(24,14,42,0.72),rgba(8,12,27,0.84))] px-6 py-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_34px_rgba(149,76,255,0.05)] sm:px-8">
+                      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="flex items-center gap-4">
+                          <svg
+                            viewBox="0 0 96 96"
+                            aria-hidden="true"
+                            className="h-16 w-16 text-cyan-200/88"
+                          >
+                            <g fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                              <circle cx="46" cy="43" r="22" opacity="0.9" />
+                              <path d="M25 40 C32 34, 38 33, 45 36 C51 39, 55 45, 62 46 C68 47, 72 45, 77 40" opacity="0.7" />
+                              <path d="M24 48 C31 46, 36 48, 40 52 C45 56, 49 59, 57 60 C64 61, 71 58, 77 52" opacity="0.78" />
+                              <path d="M36 22 C35 29, 37 35, 41 40" opacity="0.6" />
+                              <path d="M52 22 C55 28, 55 34, 53 41" opacity="0.6" />
+                              <path d="M34 64 C36 69, 39 73, 44 76" opacity="0.7" />
+                              <path d="M48 63 C50 69, 49 74, 46 81" />
+                              <path d="M58 61 C61 67, 61 74, 56 82" />
+                              <path d="M69 56 C72 61, 72 69, 66 77" opacity="0.75" />
+                            </g>
+                          </svg>
+                          <div>
+                            <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-fuchsia-200/66">
+                              Publication
+                            </p>
+                            <h2 className="mt-2 text-2xl tracking-[-0.05em] text-slate-50">
+                              Slopworld
+                            </h2>
+                          </div>
+                        </div>
+                        <a
+                          className="inline-flex rounded-full border border-fuchsia-300/16 bg-white/[0.06] px-5 py-3 text-sm text-slate-100 transition-colors hover:border-cyan-300/24 hover:bg-white/10"
+                          href="https://slopworld1.substack.com/"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Subscribe free
+                        </a>
+                      </div>
+                    </article>
                   </div>
-                ) : null}
-
-                {currentModule.viewportCards?.length ? (
+                ) : (
+                  <>
+                    <div className="mt-6 grid gap-4">
+                      {currentModule.body.map((paragraph) => (
+                        <p key={paragraph} className="max-w-[76ch] text-base leading-7 text-slate-300/78 xl:text-[1.05rem]">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                    {currentModule.actions?.length ? (
+                      <div className="mt-7 flex flex-wrap gap-3">
+                        {currentModule.actions.map((item) => (
+                          <ExternalOrInternalAction
+                            key={item.label}
+                            item={item}
+                            onAction={activateModule}
+                          />
+                        ))}
+                      </div>
+                    ) : null}
+                  </>
+                )}
+                {currentModule.viewportCards?.length && currentModule.key !== "writing" ? (
                   <div className="mt-8 grid gap-4 md:grid-cols-2">
                     {currentModule.viewportCards.map((card) => (
                       <article
