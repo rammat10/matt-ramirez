@@ -143,7 +143,7 @@ function ExternalOrInternalAction({
   onAction: (module: ModuleKey) => void;
 }) {
   const className =
-    "inline-flex rounded-full border border-fuchsia-300/16 bg-white/[0.06] px-4 py-2.5 text-sm text-slate-100 transition-colors hover:border-cyan-300/24 hover:bg-white/10";
+    "inline-flex border-2 border-[var(--line)] bg-[var(--panel)] px-4 py-3 text-sm text-[var(--ink)] transition-colors hover:bg-[var(--panel-deep)]";
 
   if (item.action) {
     return (
@@ -211,40 +211,35 @@ export default function PortfolioInterface({
   return (
     <main className="interface-grid relative min-h-screen px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-7 xl:px-10">
       <div
-        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.1] mix-blend-screen"
+        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.07] mix-blend-multiply"
         style={{ backgroundImage: "url('/reference/background.gif')" }}
       />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(232,73,172,0.2),transparent_24%),radial-gradient(circle_at_80%_16%,rgba(82,212,255,0.14),transparent_18%),radial-gradient(circle_at_50%_100%,rgba(108,74,255,0.12),transparent_24%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(73,46,22,0.06),transparent_18%,rgba(73,46,22,0.05)_100%)]" />
 
       <div className="relative flex w-full flex-col gap-3">
-        <div className="glass-panel panel-edge rounded-[28px] overflow-hidden">
+        <div className="glass-panel panel-edge overflow-hidden">
           <div
-            className="relative border-b border-slate-300/10 px-5 py-4 sm:px-7"
-            style={{ backgroundImage: "url('/reference/ui-top-header.png')", backgroundSize: "cover", backgroundPosition: "center" }}
+            className="relative border-b-2 border-[var(--line)] px-5 py-4 sm:px-7"
+            style={{ backgroundColor: "rgba(226, 208, 171, 0.88)" }}
           >
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-slate-300/58">
+                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--ink-soft)]">
                   Matt Ramirez / Interface
                 </p>
-                <p className="mt-2 text-xl tracking-[-0.05em] text-slate-50 sm:text-2xl">
+                <p className="mt-2 text-xl tracking-[-0.04em] text-[var(--ink)] sm:text-2xl">
                   Policy systems, platforms, elections, AI governance.
                 </p>
               </div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-fuchsia-200/60">
+              <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)]">
                 module engaged
               </div>
             </div>
           </div>
 
           <div
-            className="relative flex flex-wrap items-center gap-2 border-b border-slate-300/10 px-4 py-3 sm:px-6"
-            style={{
-              backgroundImage:
-                "linear-gradient(180deg, rgba(10,17,28,0.82), rgba(10,17,28,0.72)), url('/reference/ui-navbar-background.png')",
-              backgroundRepeat: "repeat-x",
-              backgroundPosition: "center"
-            }}
+            className="relative flex flex-wrap items-center gap-2 border-b-2 border-[var(--line)] px-4 py-3 sm:px-6"
+            style={{ backgroundColor: "rgba(212, 191, 150, 0.94)" }}
           >
             {(["profile", "work", "writing", "contact"] as ModuleKey[]).map((key) => {
               const item = modules[key];
@@ -254,10 +249,10 @@ export default function PortfolioInterface({
                 <button
                   key={key}
                   onClick={() => activateModule(key)}
-                  className={`rounded-full border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.24em] transition-colors ${
+                  className={`border-2 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors ${
                     selected
-                      ? "border-fuchsia-300/30 bg-fuchsia-400/12 text-slate-50 shadow-[0_0_20px_rgba(232,73,172,0.12)]"
-                      : "border-slate-200/10 bg-white/[0.03] text-slate-300/75 hover:border-cyan-300/20 hover:bg-white/[0.08]"
+                      ? "border-[var(--line)] bg-[var(--accent)] text-[#f1dfbf]"
+                      : "border-[var(--line)] bg-[var(--panel)] text-[var(--ink)] hover:bg-[var(--panel-deep)]"
                   }`}
                 >
                   {item.navLabel}
@@ -267,12 +262,12 @@ export default function PortfolioInterface({
           </div>
         </div>
 
-        <div className="glass-panel panel-edge relative flex min-h-[560px] flex-col rounded-[32px] lg:min-h-[640px]">
+        <div className="glass-panel panel-edge relative flex min-h-[560px] flex-col lg:min-h-[640px]">
           <div
-            className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.22] mix-blend-screen"
+            className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.07] mix-blend-multiply"
             style={{ backgroundImage: `url('${currentModule.background}')` }}
           />
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(13,8,28,0.68),rgba(7,10,25,0.92))]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(235,223,194,0.42),rgba(196,171,124,0.2))]" />
 
           <AnimatePresence>
             {isEngaging ? (
@@ -281,12 +276,12 @@ export default function PortfolioInterface({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.18, ease: "linear" }}
-                className="absolute inset-0 z-20 flex items-center justify-center bg-[#090812]/88"
+                transition={{ duration: 0.1, ease: "linear" }}
+                className="absolute inset-0 z-20 flex items-center justify-center bg-[rgba(215,195,154,0.92)]"
               >
                 <div className="flex flex-col items-center">
-                  <div className="mb-4 h-2.5 w-2.5 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(94,220,255,0.45)]" />
-                  <div className="font-mono text-[11px] uppercase tracking-[0.32em] text-fuchsia-100/70">
+                  <div className="mb-4 h-2.5 w-2.5 bg-[var(--accent-deep)]" />
+                  <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--ink)]">
                     engaging.{activeModule}
                   </div>
                 </div>
@@ -307,13 +302,13 @@ export default function PortfolioInterface({
                 initial={{ opacity: 0, x: 28 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -24 }}
-                transition={{ duration: 0.24, ease: "linear" }}
+                transition={{ duration: 0.12, ease: "linear" }}
                 className="min-w-0"
               >
-                <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-cyan-200/70">
+                <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--accent)]">
                   {currentModule.accent}
                 </p>
-                <h1 className={`mt-4 font-medium tracking-[-0.08em] text-slate-50 sm:text-5xl ${
+                <h1 className={`mt-4 font-medium tracking-[-0.04em] text-[var(--ink)] sm:text-5xl ${
                   currentModule.key === "writing"
                     ? "text-4xl lg:text-[3.7rem] xl:text-[4.2rem]"
                     : "text-4xl lg:max-w-[16ch] lg:text-[4.35rem] xl:text-[4.9rem]"
@@ -321,7 +316,7 @@ export default function PortfolioInterface({
                   {currentModule.title}
                 </h1>
                 {currentModule.intro ? (
-                  <p className={`mt-5 text-base leading-7 text-slate-300/82 sm:text-lg xl:text-[1.15rem] ${
+                  <p className={`mt-5 text-base leading-7 text-[var(--ink-soft)] sm:text-lg xl:text-[1.15rem] ${
                     currentModule.key === "writing" ? "max-w-[38ch]" : "max-w-[70ch]"
                   }`}>
                     {currentModule.intro}
@@ -329,13 +324,13 @@ export default function PortfolioInterface({
                 ) : null}
                 {currentModule.key === "writing" ? (
                   <div className="mt-8 max-w-[620px]">
-                    <article className="glass-panel rounded-[30px] border border-fuchsia-300/14 bg-[linear-gradient(180deg,rgba(24,14,42,0.72),rgba(8,12,27,0.84))] px-6 py-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_34px_rgba(149,76,255,0.05)] sm:px-8">
+                    <article className="glass-panel border-2 border-[var(--line)] bg-[rgba(225,205,168,0.96)] px-6 py-7 sm:px-8">
                       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-center gap-4">
                           <svg
                             viewBox="0 0 120 140"
                             aria-hidden="true"
-                            className="h-20 w-20 text-slate-50"
+                            className="h-20 w-20 text-[var(--ink)]"
                           >
                             <g
                               fill="none"
@@ -368,16 +363,16 @@ export default function PortfolioInterface({
                             </g>
                           </svg>
                           <div>
-                            <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-fuchsia-200/66">
+                            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--accent)]">
                               Publication
                             </p>
-                            <h2 className="mt-2 text-2xl tracking-[-0.05em] text-slate-50">
+                            <h2 className="mt-2 text-2xl tracking-[-0.04em] text-[var(--ink)]">
                               Slopworld
                             </h2>
                           </div>
                         </div>
                         <a
-                          className="inline-flex rounded-full border border-fuchsia-300/16 bg-white/[0.06] px-5 py-3 text-sm text-slate-100 transition-colors hover:border-cyan-300/24 hover:bg-white/10"
+                          className="inline-flex border-2 border-[var(--line)] bg-[var(--accent)] px-5 py-3 text-sm text-[#f1dfbf] transition-colors hover:bg-[var(--accent-deep)]"
                           href="https://slopworld1.substack.com/"
                           target="_blank"
                           rel="noreferrer"
@@ -391,7 +386,7 @@ export default function PortfolioInterface({
                   <>
                     <div className="mt-6 grid gap-4">
                       {currentModule.body.map((paragraph) => (
-                        <p key={paragraph} className="max-w-[76ch] text-base leading-7 text-slate-300/78 xl:text-[1.05rem]">
+                        <p key={paragraph} className="max-w-[76ch] text-base leading-7 text-[var(--ink-soft)] xl:text-[1.05rem]">
                           {paragraph}
                         </p>
                       ))}
@@ -414,24 +409,24 @@ export default function PortfolioInterface({
                     {currentModule.viewportCards.map((card) => (
                       <article
                         key={card.title}
-                        className="glass-panel rounded-[28px] border border-fuchsia-300/14 bg-[linear-gradient(180deg,rgba(31,16,56,0.5),rgba(11,15,33,0.72))] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_30px_rgba(149,76,255,0.06)]"
+                        className="glass-panel border-2 border-[var(--line)] bg-[rgba(225,205,168,0.94)] p-5"
                       >
-                        <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-fuchsia-200/68">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--accent)]">
                           {card.label ?? "Native project"}
                         </p>
-                        <h3 className="mt-3 text-xl tracking-[-0.05em] text-slate-50">
+                        <h3 className="mt-3 text-xl tracking-[-0.04em] text-[var(--ink)]">
                           {card.title}
                         </h3>
-                        <p className="mt-3 text-sm leading-6 text-slate-300/80">
+                        <p className="mt-3 text-sm leading-6 text-[var(--ink-soft)]">
                           {card.excerpt}
                         </p>
                         {card.body ? (
-                          <p className="mt-4 text-sm leading-6 text-slate-300/68">{card.body}</p>
+                          <p className="mt-4 text-sm leading-6 text-[var(--ink-soft)]">{card.body}</p>
                         ) : null}
                         {card.href ? (
                           <div className="mt-5">
                             <a
-                              className="inline-flex rounded-full border border-fuchsia-300/16 bg-white/[0.06] px-4 py-2.5 text-sm text-slate-100 transition-colors hover:border-cyan-300/24 hover:bg-white/10"
+                              className="inline-flex border-2 border-[var(--line)] bg-[var(--panel)] px-4 py-2.5 text-sm text-[var(--ink)] transition-colors hover:bg-[var(--panel-deep)]"
                               href={card.href}
                               target="_blank"
                               rel="noreferrer"
@@ -454,11 +449,11 @@ export default function PortfolioInterface({
                   initial={{ opacity: 0, x: 28 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -24 }}
-                  transition={{ duration: 0.24, ease: "linear", delay: 0.05 }}
-                  className="glass-panel rounded-[28px] p-4 lg:min-h-[360px]"
+                  transition={{ duration: 0.12, ease: "linear", delay: 0.03 }}
+                  className="glass-panel p-4 lg:min-h-[360px]"
                 >
                   <div>
-                    <div className="overflow-hidden rounded-[22px] border border-slate-200/10">
+                    <div className="overflow-hidden border-2 border-[var(--line)]">
                       <Image
                         src="/matt-ramirez-headshot.jpg"
                         alt="Matt Ramirez"
@@ -468,16 +463,16 @@ export default function PortfolioInterface({
                         className="h-full max-h-[420px] w-full object-cover lg:max-h-[380px]"
                       />
                     </div>
-                    <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-fuchsia-300/18 bg-fuchsia-400/10 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.24em] text-fuchsia-100/82 shadow-[0_0_20px_rgba(232,73,172,0.1)]">
-                      <span className="h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(94,220,255,0.55)]" />
+                    <div className="mt-3 inline-flex items-center gap-2 border-2 border-[var(--line)] bg-[var(--panel)] px-3 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--ink)]">
+                      <span className="h-2.5 w-2.5 bg-[var(--accent-deep)]" />
                       online now!
                     </div>
                   </div>
                   <div className="mt-4">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-fuchsia-200/68">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)]">
                       {currentModule.asideTitle}
                     </p>
-                    <div className="mt-4 space-y-3 text-sm leading-6 text-slate-300/80">
+                    <div className="mt-4 space-y-3 text-sm leading-6 text-[var(--ink-soft)]">
                       {currentModule.asideBody.map((item) => (
                         <p key={item}>{item}</p>
                       ))}
@@ -490,15 +485,10 @@ export default function PortfolioInterface({
         </div>
 
         <div
-          className="glass-panel panel-edge flex flex-col gap-3 overflow-hidden rounded-[18px] px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
-          style={{
-            backgroundImage:
-              "linear-gradient(180deg, rgba(10,17,28,0.86), rgba(10,17,28,0.76)), url('/reference/ui-navbar-background.png')",
-            backgroundRepeat: "repeat-x",
-            backgroundPosition: "center"
-          }}
+          className="glass-panel panel-edge flex flex-col gap-3 overflow-hidden px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
+          style={{ backgroundColor: "rgba(212, 191, 150, 0.94)" }}
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-slate-300/56">
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--ink-soft)]">
             Matt Ramirez / framed portfolio system
           </p>
           <div className="flex flex-wrap gap-3">
@@ -508,7 +498,7 @@ export default function PortfolioInterface({
                 href={link.href}
                 target={link.href.startsWith("mailto:") ? undefined : "_blank"}
                 rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                className="font-mono text-[10px] uppercase tracking-[0.24em] text-slate-200/74"
+                className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--ink)]"
               >
                 {link.label}
               </a>
