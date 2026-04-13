@@ -66,7 +66,7 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     asideBody: [
       "GovSearch is a retrieval-based AI tool for congressional legislation.",
       "BlueDot AI governance project received runner-up recognition.",
-      "GovGPT secured a direct Andreessen Horowitz pitch."
+      "Sourced and presented a direct pitch to Andreessen Horowitz."
     ],
     viewportCards: [
       {
@@ -86,22 +86,6 @@ const modules: Record<ModuleKey, ModuleConfig> = {
         label: "Project bubble",
         href: "https://gov-search.vercel.app/about",
         ctaLabel: "View GovSearch"
-      },
-      {
-        title: "Future work 02",
-        excerpt:
-          "Placeholder for a second native project bubble that can hold writing, research, or a selected build.",
-        body:
-          "This is meant to be easy to edit later without redesigning the layout.",
-        label: "Placeholder"
-      },
-      {
-        title: "Future work 03",
-        excerpt:
-          "Placeholder for another project bubble you can turn into a live case study or note.",
-        body:
-          "Replace this text directly in the content array when you are ready.",
-        label: "Placeholder"
       }
     ]
   },
@@ -132,19 +116,15 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     key: "contact",
     navLabel: "Contact",
     stateLabel: "contact.link",
-    title: "Direct lines only.",
-    intro:
-      "The contact module stays minimal on purpose. Email and LinkedIn are the two cleanest ways in.",
-    body: [
-      "For writing, research, platform policy, or collaboration, send a note directly.",
-      "This site is meant to be selective, so the contact layer is selective too."
-    ],
-    accent: "Contact channel",
+    title: "Feel free to connect.",
+    intro: "",
+    body: [],
+    accent: "Contact",
     background: "/reference/contact-background.png",
     asideTitle: "Links",
     asideBody: ["matt.m.ram@gmail.com", "linkedin.com/in/mattramirez"],
     actions: [
-      { label: "Email Matt", href: "mailto:matt.m.ram@gmail.com" },
+      { label: "Email", href: "mailto:matt.m.ram@gmail.com" },
       { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" }
     ]
   }
@@ -340,11 +320,13 @@ export default function PortfolioInterface({
                 }`}>
                   {currentModule.title}
                 </h1>
-                <p className={`mt-5 text-base leading-7 text-slate-300/82 sm:text-lg xl:text-[1.15rem] ${
-                  currentModule.key === "writing" ? "max-w-[38ch]" : "max-w-[70ch]"
-                }`}>
-                  {currentModule.intro}
-                </p>
+                {currentModule.intro ? (
+                  <p className={`mt-5 text-base leading-7 text-slate-300/82 sm:text-lg xl:text-[1.15rem] ${
+                    currentModule.key === "writing" ? "max-w-[38ch]" : "max-w-[70ch]"
+                  }`}>
+                    {currentModule.intro}
+                  </p>
+                ) : null}
                 {currentModule.key === "writing" ? (
                   <div className="mt-8 max-w-[620px]">
                     <article className="glass-panel rounded-[30px] border border-fuchsia-300/14 bg-[linear-gradient(180deg,rgba(24,14,42,0.72),rgba(8,12,27,0.84))] px-6 py-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_34px_rgba(149,76,255,0.05)] sm:px-8">
