@@ -1,7 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
+  --bg: #d7c39a;
+  --bg-dark: #c7b186;
+  --panel: #ceb88f;
+  --panel-deep: #bca271;
+  --ink: #1f1308;
+  --ink-soft: #4a3421;
+  --line: #3a2512;
+  --accent: #914a23;
+  --accent-deep: #6b2814;
 }
 
 * {
@@ -9,19 +18,20 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 18% 10%, rgba(232, 73, 172, 0.22), transparent 24%),
-    radial-gradient(circle at 84% 14%, rgba(75, 210, 255, 0.18), transparent 18%),
-    radial-gradient(circle at 62% 78%, rgba(122, 73, 255, 0.14), transparent 24%),
-    linear-gradient(180deg, #070916 0%, #0a1020 40%, #120b21 100%);
-  color: #f1eefd;
+    linear-gradient(rgba(60, 37, 19, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 37, 19, 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-dark) 100%);
+  background-size: 20px 20px, 20px 20px, 100% 100%;
+  color: var(--ink);
   font-family: var(--font-sans), sans-serif;
+  text-rendering: geometricPrecision;
 }
 
 a {
@@ -29,25 +39,25 @@ a {
   text-decoration: none;
 }
 
+h1,
+h2,
+h3,
+.font-mono {
+  font-family: var(--font-display), monospace !important;
+}
+
 .interface-grid {
   background-image:
-    linear-gradient(rgba(173, 119, 232, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(90, 188, 255, 0.07) 1px, transparent 1px);
+    linear-gradient(rgba(59, 37, 17, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 37, 17, 0.1) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
 .glass-panel {
-  border: 1px solid rgba(172, 132, 255, 0.18);
+  border: 2px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(20, 16, 40, 0.84), rgba(11, 15, 31, 0.72)),
-    linear-gradient(135deg, rgba(232, 73, 172, 0.08), transparent 34%),
-    linear-gradient(225deg, rgba(74, 214, 255, 0.08), transparent 36%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    inset 0 0 0 1px rgba(115, 78, 194, 0.12),
-    0 18px 48px rgba(0, 0, 0, 0.26),
-    0 0 40px rgba(125, 73, 255, 0.08);
-  backdrop-filter: blur(14px);
+    linear-gradient(180deg, rgba(229, 211, 177, 0.88), rgba(194, 166, 118, 0.92));
+  box-shadow: inset 0 0 0 1px rgba(255, 243, 212, 0.28);
 }
 
 .panel-edge {
@@ -58,10 +68,7 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  background:
-    linear-gradient(90deg, rgba(230, 84, 178, 0.15), transparent 22%),
-    linear-gradient(180deg, rgba(95, 224, 255, 0.09), transparent 28%);
+  border: 1px solid rgba(87, 52, 26, 0.22);
   pointer-events: none;
 }
 
@@ -71,136 +78,75 @@ a {
   top: 0;
   z-index: 60;
   pointer-events: none;
-  border-radius: 999px;
-  mix-blend-mode: screen;
-  background: radial-gradient(circle, rgba(112, 238, 255, 0.9) 0%, rgba(215, 73, 255, 0.45) 58%, transparent 74%);
-  box-shadow: 0 0 18px rgba(100, 227, 255, 0.16);
+  width: 6px;
+  height: 6px;
+  background: rgba(124, 51, 22, 0.42);
+  border: 1px solid rgba(44, 21, 8, 0.55);
 }
 
-.ram-rain {
+.doom-gate-noise {
   position: absolute;
   inset: 0;
-  opacity: 0.12;
+  opacity: 0.08;
   background-image:
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(121, 185, 137, 0.16) 38%,
-      transparent 78%
-    ),
     repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 23px,
-      rgba(121, 185, 137, 0.12) 24px,
-      transparent 25px,
-      transparent 47px,
-      rgba(121, 185, 137, 0.08) 48px
+      180deg,
+      rgba(42, 24, 10, 0.14) 0,
+      rgba(42, 24, 10, 0.14) 1px,
+      transparent 2px,
+      transparent 4px
     );
-  background-size: 100% 180px, 100% 100%;
-  animation: ram-rain-shift 8s linear infinite;
 }
 
-.ram-scanlines {
+.doom-gate-stripes {
   position: absolute;
   inset: 0;
-  opacity: 0.1;
-  background-image: repeating-linear-gradient(
-    180deg,
-    transparent 0,
-    transparent 5px,
-    rgba(140, 196, 152, 0.08) 6px
-  );
-  pointer-events: none;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(90deg, transparent 0, transparent 48%, rgba(77, 44, 20, 0.28) 50%, transparent 52%, transparent 100%);
 }
 
-.ram-face-wrap {
+.doom-face-wrap {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 320px;
-  height: 320px;
-  color: rgba(146, 211, 162, 0.86);
-  filter: drop-shadow(0 0 16px rgba(122, 194, 141, 0.12));
-  animation: ram-breathe 5.2s ease-in-out infinite;
+  padding: 12px;
+  border: 2px solid var(--line);
+  background: rgba(219, 198, 155, 0.95);
 }
 
-.ram-face {
-  width: 100%;
-  height: 100%;
-  opacity: 0.94;
+.doom-face-wrap img {
+  display: block;
+  width: min(42vw, 240px);
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
-.ram-face-planes {
-  fill: rgba(118, 175, 132, 0.028);
-  stroke: none;
+.doom-face-glitch {
+  animation: doom-gif-glitch 0.2s steps(2, end);
 }
 
-.ram-face-mesh {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.05;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0.78;
-}
-
-.ram-face-nodes {
-  fill: rgba(156, 216, 170, 0.88);
-  opacity: 0.82;
-}
-
-.ram-face-nodes circle:nth-child(4n) {
-  opacity: 0.56;
-}
-
-.ram-face-nodes circle:nth-child(5n) {
-  opacity: 0.36;
-}
-
-.ram-face-glitch {
-  animation: ram-glitch 0.28s linear;
-}
-
-@keyframes ram-breathe {
-  0%,
-  100% {
-    transform: translateY(0) scale(0.996);
-  }
-  50% {
-    transform: translateY(3px) scale(1.01);
-  }
-}
-
-@keyframes ram-glitch {
+@keyframes doom-gif-glitch {
   0% {
-    transform: translateX(0);
-    filter: drop-shadow(0 0 16px rgba(122, 194, 141, 0.12));
+    transform: translate(0, 0);
+    opacity: 1;
+    filter: contrast(1);
   }
   25% {
-    transform: translateX(-4px) skewX(-1.4deg);
-    filter:
-      drop-shadow(-5px 0 0 rgba(125, 188, 138, 0.16))
-      drop-shadow(4px 0 0 rgba(125, 188, 138, 0.07));
+    transform: translate(-4px, 1px);
+    opacity: 0.75;
+    filter: contrast(1.35);
   }
-  55% {
-    transform: translateX(3px) skewX(1deg);
-  }
-  78% {
-    transform: translateX(-1px);
+  60% {
+    transform: translate(3px, -1px);
+    opacity: 0.92;
+    filter: contrast(1.18);
   }
   100% {
-    transform: translateX(0);
-    filter: drop-shadow(0 0 16px rgba(122, 194, 141, 0.12));
-  }
-}
-
-@keyframes ram-rain-shift {
-  0% {
-    background-position: 0 -120px, 0 0;
-  }
-  100% {
-    background-position: 0 120px, 0 0;
+    transform: translate(0, 0);
+    opacity: 1;
+    filter: contrast(1);
   }
 }
