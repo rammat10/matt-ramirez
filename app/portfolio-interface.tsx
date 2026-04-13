@@ -80,9 +80,9 @@ const modules: Record<ModuleKey, ModuleConfig> = {
       {
         title: "GovSearch",
         excerpt:
-          "Use this card for your GovSearch write-up, including what the tool does, why you built it, and what made it notable.",
+          "Awarded runner-up recognition at BlueDot AI governance project.",
         body:
-          "Placeholder copy: GovSearch is a retrieval-based AI tool for congressional legislation. Add your own framing here about the problem, the interface, the technical approach, the BlueDot runner-up recognition, and what the project revealed about the limits of AI systems in practice.",
+          "Built and deployed a RAG system over U.S. congressional records to make legislative search usable. Worked across embeddings, retrieval, and system design. Focused on how it performed under real queries, not ideal conditions. The project sharpened how I think about model limits and how policy needs to reflect them.",
         label: "Project bubble",
         href: "https://gov-search.vercel.app/about",
         ctaLabel: "View GovSearch"
