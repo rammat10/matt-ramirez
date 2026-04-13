@@ -71,6 +71,8 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     viewportCards: [
       {
         title: "How I built this website",
+        excerpt:
+          "Built quickly with AI-assisted iteration, then refined by hand when layout and design choices started to drift.",
         body:
           "I built this site quickly using Codex to write and adjust the code as I went. It runs on Next.js and React for the structure, Tailwind for styling, and Framer Motion for animations. For the design, I referenced another interface-style site and used it as a guide, then worked with AI to translate that look here. I also added a small interactive entry. Instead of a normal landing page, the site starts with a turing test-like question and a few choices. It is fast and flexible to build this way, but it lacks design talent and still needs human judgment to keep things consistent and working properly.",
         label: "In-site project"
