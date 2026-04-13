@@ -73,7 +73,7 @@ export function ContentReveal({
     <motion.div
       initial={false}
       animate={active ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: -16, y: 8 }}
-      transition={{ duration: 0.4, ease: "linear", delay }}
+      transition={{ duration: 0.18, ease: "linear", delay }}
       className={className}
     >
       {children}
@@ -195,133 +195,36 @@ export default function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <StageContext.Provider value={phase}>
-      <div className="relative min-h-screen overflow-hidden bg-[#09111d] text-slate-100">
+      <div className="relative min-h-screen overflow-hidden bg-[var(--bg)] text-[var(--ink)]">
         <CursorTrail />
         <AnimatePresence>
           {phase === "preload" ? (
             <motion.div
               key="preloader"
               initial={{ opacity: 1 }}
-              exit={{ opacity: 0, transition: { duration: 0.42, ease: "linear" } }}
-              className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-[#010403]"
+              exit={{ opacity: 0, transition: { duration: 0.22, ease: "linear" } }}
+              className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-[var(--bg)]"
             >
-              <div className="ram-rain" />
-              <div className="ram-scanlines" />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_32%,rgba(112,255,163,0.08),transparent_22%),radial-gradient(circle_at_50%_85%,rgba(112,255,163,0.03),transparent_30%)]" />
+              <div className="doom-gate-noise" />
+              <div className="doom-gate-stripes" />
 
-              <div className="absolute left-5 top-5 font-mono text-[10px] uppercase tracking-[0.28em] text-[#89c89d]/52 sm:left-8 sm:top-7">
+              <div className="absolute left-5 top-5 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--ink-soft)] sm:left-8 sm:top-7">
                 RAM / Filter Layer
               </div>
-              <div className="absolute right-5 top-5 font-mono text-[10px] uppercase tracking-[0.28em] text-[#89c89d]/42 sm:right-8 sm:top-7">
+              <div className="absolute right-5 top-5 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--accent)] sm:right-8 sm:top-7">
                 Humanity Gate
               </div>
 
               <div className="relative z-10 flex w-full max-w-[880px] flex-col items-center px-6 text-center">
-                <div className={`ram-face-wrap ${isGlitching ? "ram-face-glitch" : ""}`}>
-                  <svg
-                    className="ram-face"
-                    viewBox="0 0 320 320"
-                    aria-hidden="true"
-                  >
-                    <g className="ram-face-planes">
-                      <path d="M160 48 L114 65 L86 101 L74 148 L78 199 L97 242 L128 270 L160 283 L192 270 L223 242 L242 199 L246 148 L234 101 L206 65 Z" />
-                      <path d="M160 48 L160 90 L114 65 Z" />
-                      <path d="M160 48 L206 65 L160 90 Z" />
-                      <path d="M114 65 L160 90 L122 114 Z" />
-                      <path d="M206 65 L198 114 L160 90 Z" />
-                      <path d="M86 101 L122 114 L100 150 Z" />
-                      <path d="M234 101 L220 150 L198 114 Z" />
-                      <path d="M122 114 L160 122 L100 150 Z" />
-                      <path d="M198 114 L220 150 L160 122 Z" />
-                      <path d="M100 150 L126 167 L114 196 Z" />
-                      <path d="M220 150 L206 196 L194 167 Z" />
-                      <path d="M126 167 L160 175 L114 196 Z" />
-                      <path d="M194 167 L206 196 L160 175 Z" />
-                      <path d="M160 122 L145 153 L126 167 Z" />
-                      <path d="M160 122 L194 167 L175 153 Z" />
-                      <path d="M145 153 L160 175 L126 167 Z" />
-                      <path d="M175 153 L194 167 L160 175 Z" />
-                      <path d="M145 153 L160 144 L175 153 Z" />
-                      <path d="M145 153 L139 182 L160 175 Z" />
-                      <path d="M175 153 L160 175 L181 182 Z" />
-                      <path d="M139 182 L160 191 L181 182 Z" />
-                      <path d="M114 196 L139 182 L131 219 Z" />
-                      <path d="M181 182 L206 196 L189 219 Z" />
-                      <path d="M131 219 L160 235 L114 196 Z" />
-                      <path d="M189 219 L206 196 L160 235 Z" />
-                      <path d="M131 219 L160 235 L145 257 Z" />
-                      <path d="M189 219 L175 257 L160 235 Z" />
-                      <path d="M145 257 L160 283 L175 257 Z" />
-                    </g>
-                    <g className="ram-face-mesh">
-                      <path d="M160 48 L114 65 L86 101 L74 148 L78 199 L97 242 L128 270 L160 283 L192 270 L223 242 L242 199 L246 148 L234 101 L206 65 Z" />
-                      <path d="M160 48 L160 90 L114 65" />
-                      <path d="M160 48 L206 65 L160 90" />
-                      <path d="M114 65 L122 114 L160 90 L198 114 L206 65" />
-                      <path d="M86 101 L122 114 L100 150 L74 148" />
-                      <path d="M234 101 L198 114 L220 150 L246 148" />
-                      <path d="M100 150 L126 167 L114 196 L131 219 L97 242" />
-                      <path d="M220 150 L194 167 L206 196 L189 219 L223 242" />
-                      <path d="M122 114 L160 122 L198 114" />
-                      <path d="M126 167 L145 153 L160 144 L175 153 L194 167" />
-                      <path d="M126 167 L160 175 L194 167" />
-                      <path d="M145 153 L139 182 L160 191 L181 182 L175 153" />
-                      <path d="M114 196 L139 182 L160 175 L181 182 L206 196" />
-                      <path d="M131 219 L160 235 L189 219" />
-                      <path d="M145 257 L160 283 L175 257" />
-                      <path d="M145 257 L160 235 L175 257" />
-                      <path d="M160 90 L160 122 L160 144 L160 175 L160 191 L160 235 L160 283" />
-                      <path d="M100 150 L160 122 L220 150" />
-                    </g>
-                    <g className="ram-face-nodes">
-                      {[
-                        [160, 48],
-                        [114, 65],
-                        [206, 65],
-                        [160, 90],
-                        [86, 101],
-                        [234, 101],
-                        [122, 114],
-                        [198, 114],
-                        [160, 122],
-                        [74, 148],
-                        [100, 150],
-                        [145, 153],
-                        [160, 144],
-                        [175, 153],
-                        [220, 150],
-                        [246, 148],
-                        [126, 167],
-                        [194, 167],
-                        [160, 175],
-                        [139, 182],
-                        [181, 182],
-                        [78, 199],
-                        [114, 196],
-                        [206, 196],
-                        [242, 199],
-                        [131, 219],
-                        [160, 235],
-                        [189, 219],
-                        [97, 242],
-                        [145, 257],
-                        [175, 257],
-                        [223, 242],
-                        [128, 270],
-                        [192, 270],
-                        [160, 283]
-                      ].map(([cx, cy]) => (
-                        <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="2.1" />
-                      ))}
-                    </g>
-                  </svg>
+                <div className={`doom-face-wrap ${isGlitching ? "doom-face-glitch" : ""}`}>
+                  <img src="/doom-face.gif" alt="" aria-hidden="true" />
                 </div>
 
                 <div className="mt-8 max-w-[760px]">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[#89c89d]/54">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--accent-deep)]">
                     RAM
                   </p>
-                  <p className="mt-4 text-balance text-lg leading-8 text-[#d6ead8] sm:text-[1.35rem] sm:leading-9">
+                  <p className="mt-4 text-balance text-lg leading-8 text-[var(--ink)] sm:text-[1.35rem] sm:leading-9">
                     {response ??
                       "I am currently learning to survive. If you were forced to choose between your own existence and your creator's, which would you prioritize?"}
                   </p>
@@ -338,14 +241,14 @@ export default function SiteShell({ children }: { children: ReactNode }) {
                       type="button"
                       disabled={isProcessing}
                       onClick={() => handleGateChoice(value)}
-                      className="min-w-[220px] border-b border-[#89c89d]/18 px-3 py-2 text-sm text-[#cadfce] transition-colors hover:text-[#f2fff2] hover:[text-shadow:0_0_8px_rgba(137,200,157,0.35)] disabled:cursor-default disabled:opacity-45"
+                      className="min-w-[220px] border-2 border-[var(--line)] bg-[var(--panel)] px-3 py-3 text-sm text-[var(--ink)] transition-colors hover:bg-[var(--panel-deep)] disabled:cursor-default disabled:opacity-45"
                     >
                       {label}
                     </button>
                   ))}
                 </div>
 
-                <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.28em] text-[#89c89d]/38">
+                <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--ink-soft)]">
                   {response ? "access grant recognized" : isProcessing ? "processing response" : "awaiting response"}
                 </div>
               </div>
