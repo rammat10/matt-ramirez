@@ -34,7 +34,7 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     key: "profile",
     navLabel: "Profile",
     stateLabel: "profile.active",
-    title: "Trust at scale.",
+    title: "Trust, scaled.",
     intro:
       "Currently leading Misinformation policy at TikTok. Former Facebook and Advisor to Speaker Pelosi.",
     body: [
