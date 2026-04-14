@@ -367,7 +367,7 @@ export default function PortfolioInterface({
                               Publication
                             </p>
                             <h2 className="mt-2 text-2xl tracking-[-0.04em] text-[var(--ink)]">
-                              Slopworld
+                              Substack
                             </h2>
                           </div>
                         </div>
