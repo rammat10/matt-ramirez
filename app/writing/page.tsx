@@ -1,9 +1,9 @@
 import PortfolioInterface from "../portfolio-interface";
 
 export const metadata = {
-  title: "Slopworld | Matt Ramirez",
+  title: "Substack | Matt Ramirez",
   description:
-    "Slopworld is Matt Ramirez's newsletter module."
+    "Substack is Matt Ramirez's newsletter module."
 };
 
 export default function WritingPage() {
