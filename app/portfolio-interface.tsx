@@ -122,16 +122,16 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     accent: "Contact",
     background: "/reference/contact-background.png",
     asideTitle: "Links",
-    asideBody: ["matt.m.ram@gmail.com", "linkedin.com/in/mattramirez"],
+    asideBody: ["pie-hipster.1c@icloud.com", "linkedin.com/in/mattramirez"],
     actions: [
-      { label: "Email", href: "mailto:matt.m.ram@gmail.com" },
+      { label: "Email", href: "mailto:pie-hipster.1c@icloud.com" },
       { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" }
     ]
   }
 };
 
 const footerLinks = [
-  { label: "Email", href: "mailto:matt.m.ram@gmail.com" },
+  { label: "Email", href: "mailto:pie-hipster.1c@icloud.com" },
   { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" }
 ];
 
