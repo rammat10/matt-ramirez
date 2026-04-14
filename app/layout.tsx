@@ -22,7 +22,7 @@ const pressStart = Press_Start_2P({
 export const metadata = {
   title: "Matt Ramirez",
   description:
-    "Minimalist Frutiger Aero inspired portfolio for Matt Ramirez across platforms, policy, AI governance, and institutional systems."
+    "Welcome to the discourse cafe can I get you started with a sunny angel limited edition dubai choclate matcha cortado?"
 };
 
 export default function RootLayout({ children }) {
