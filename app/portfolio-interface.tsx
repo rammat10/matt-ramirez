@@ -91,9 +91,9 @@ const modules: Record<ModuleKey, ModuleConfig> = {
   },
   writing: {
     key: "writing",
-    navLabel: "Slopworld",
-    stateLabel: "slopworld.feed",
-    title: "Slopworld",
+    navLabel: "Substack",
+    stateLabel: "substack.feed",
+    title: "Substack",
     intro:
       "Get my newsletter delivered to your inbox.",
     body: [],
@@ -103,7 +103,7 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     asideBody: [],
     viewportCards: [
       {
-        title: "Slopworld",
+        title: "Substack",
         excerpt:
           "A newsletter tile inside the interface. Weird, plainspoken, and sent straight to your inbox.",
         body:
