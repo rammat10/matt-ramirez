@@ -78,6 +78,16 @@ const modules: Record<ModuleKey, ModuleConfig> = {
         label: "In-site project"
       },
       {
+        title: "ALIGN",
+        excerpt:
+          "A benchmark for evaluating how language models behave on politically and geopolitically sensitive questions related to China.",
+        body:
+          "I built ALIGN to measure how frontier LLMs respond under real-world but often invisible output constraints. Models do not just get things right or wrong. They refuse, hedge, follow content policies, or produce one-sided narratives. ALIGN makes those differences visible and comparable. The system runs prompts across multiple models and uses a model-as-judge pipeline to score outputs against a structured rubric. Responses are classified into tiers from neutral to biased, while separately tracking behavior like refusal, safety blocking, and incomplete outputs. Technically, it is built on a Promptfoo-based evaluation pipeline with OpenRouter for multi-model routing, a custom classifier for scoring, and a static Next.js dashboard deployed on Vercel. It runs end to end from prompt to output to judgment to analysis, with results exposed through a simple interface for comparing models, inspecting outputs, and identifying patterns.",
+        label: "Project bubble",
+        href: "https://alignllm.vercel.app/",
+        ctaLabel: "View ALIGN"
+      },
+      {
         title: "GovSearch",
         excerpt:
           "Awarded runner-up recognition at BlueDot AI governance project.",
@@ -122,16 +132,16 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     accent: "Contact",
     background: "/reference/contact-background.png",
     asideTitle: "Links",
-    asideBody: ["pie-hipster.1c@icloud.com", "linkedin.com/in/mattramirez"],
+    asideBody: ["matt.m.ram@gmail.com", "linkedin.com/in/mattramirez"],
     actions: [
-      { label: "Email", href: "mailto:pie-hipster.1c@icloud.com" },
+      { label: "Email", href: "mailto:matt.m.ram@gmail.com" },
       { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" }
     ]
   }
 };
 
 const footerLinks = [
-  { label: "Email", href: "mailto:pie-hipster.1c@icloud.com" },
+  { label: "Email", href: "mailto:matt.m.ram@gmail.com" },
   { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" }
 ];
 
