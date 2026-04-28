@@ -83,7 +83,7 @@ const modules: Record<ModuleKey, ModuleConfig> = {
           "A benchmark for evaluating how language models behave on politically and geopolitically sensitive questions related to China.",
         body:
           "I built ALIGN to measure how frontier LLMs respond under real-world but often invisible output constraints. Models do not just get things right or wrong. They refuse, hedge, follow content policies, or produce one-sided narratives. ALIGN makes those differences visible and comparable. The system runs prompts across multiple models and uses a model-as-judge pipeline to score outputs against a structured rubric. Responses are classified into tiers from neutral to biased, while separately tracking behavior like refusal, safety blocking, and incomplete outputs. Technically, it is built on a Promptfoo-based evaluation pipeline with OpenRouter for multi-model routing, a custom classifier for scoring, and a static Next.js dashboard deployed on Vercel. It runs end to end from prompt to output to judgment to analysis, with results exposed through a simple interface for comparing models, inspecting outputs, and identifying patterns.",
-        label: "Project bubble",
+        label: "LLM benchmark",
         href: "https://alignllm.vercel.app/",
         ctaLabel: "View ALIGN"
       },
@@ -93,7 +93,7 @@ const modules: Record<ModuleKey, ModuleConfig> = {
           "Awarded runner-up recognition at BlueDot AI governance project.",
         body:
           "Built and deployed a RAG system over U.S. congressional records to make legislative search usable. Worked across embeddings, retrieval, and system design. Focused on how it performed under real queries, not ideal conditions. The project sharpened how I think about model limits and how policy needs to reflect them.",
-        label: "Project bubble",
+        label: "Legislation search",
         href: "https://gov-search.vercel.app/about",
         ctaLabel: "View GovSearch"
       }
@@ -142,7 +142,19 @@ const modules: Record<ModuleKey, ModuleConfig> = {
 
 const footerLinks = [
   { label: "Email", href: "mailto:matt.m.ram@gmail.com" },
+  { label: "Github", href: "https://github.com/rammat10" },
   { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" }
+];
+
+const navigationItems: Array<
+  | { type: "module"; key: ModuleKey }
+  | { type: "external"; label: string; href: string }
+> = [
+  { type: "module", key: "profile" },
+  { type: "module", key: "work" },
+  { type: "module", key: "writing" },
+  { type: "external", label: "Github", href: "https://github.com/rammat10" },
+  { type: "module", key: "contact" }
 ];
 
 function ExternalOrInternalAction({
@@ -251,21 +263,35 @@ export default function PortfolioInterface({
             className="relative flex flex-wrap items-center gap-2 border-b-2 border-[var(--line)] px-4 py-3 sm:px-6"
             style={{ backgroundColor: "rgba(212, 191, 150, 0.94)" }}
           >
-            {(["profile", "work", "writing", "contact"] as ModuleKey[]).map((key) => {
-              const item = modules[key];
-              const selected = activeModule === key;
+            {navigationItems.map((item) => {
+              if (item.type === "external") {
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="border-2 border-[var(--line)] bg-[var(--panel)] px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--ink)] transition-colors hover:bg-[var(--panel-deep)]"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
+              const module = modules[item.key];
+              const selected = activeModule === item.key;
 
               return (
                 <button
-                  key={key}
-                  onClick={() => activateModule(key)}
+                  key={item.key}
+                  onClick={() => activateModule(item.key)}
                   className={`border-2 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors ${
                     selected
                       ? "border-[var(--line)] bg-[var(--accent)] text-[#f1dfbf]"
                       : "border-[var(--line)] bg-[var(--panel)] text-[var(--ink)] hover:bg-[var(--panel-deep)]"
                   }`}
                 >
-                  {item.navLabel}
+                  {module.navLabel}
                 </button>
               );
             })}
