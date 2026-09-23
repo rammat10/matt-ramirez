@@ -3,7 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import Script from "next/script";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type ModuleKey = "profile" | "work" | "writing" | "contact";
 
@@ -27,6 +28,16 @@ type ModuleConfig = {
     ctaLabel?: string;
   }[];
   actions?: { label: string; href?: string; action?: ModuleKey }[];
+};
+
+const TIKTOK_PROFILE_URL = "https://www.tiktok.com/@mclovingrace";
+
+type TikTokEmbedWindow = Window & {
+  tiktokEmbed?: {
+    lib?: {
+      render?: (nodes: Element[]) => Promise<void> | void;
+    };
+  };
 };
 
 const modules: Record<ModuleKey, ModuleConfig> = {
@@ -58,7 +69,8 @@ const modules: Record<ModuleKey, ModuleConfig> = {
     body: [
       "Wrote the first blockchain and crypto memo for Speaker Pelosi and House leadership.",
       "Worked on the front lines of Facebook content policy from the post-Trump period through the Ukraine war.",
-      "At TikTok, worked on the 2024/26 U.S. election, the Canadian election, misinformation, and the launch of major global initiatives."
+      "At TikTok, worked on the 2024/26 U.S. election, the Canadian election, misinformation, and the launch of major global initiatives.",
+      "Created a short-form video series explaining technical AI safety concepts for policy audiences on TikTok and LinkedIn."
     ],
     accent: "Selected work",
     background: "/reference/home-background.png",
@@ -143,7 +155,8 @@ const modules: Record<ModuleKey, ModuleConfig> = {
 const footerLinks = [
   { label: "Email", href: "mailto:matt.m.ram@gmail.com" },
   { label: "Github", href: "https://github.com/rammat10" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" }
+  { label: "LinkedIn", href: "https://linkedin.com/in/mattramirez" },
+  { label: "TikTok", href: TIKTOK_PROFILE_URL }
 ];
 
 const navigationItems: Array<
@@ -187,6 +200,99 @@ function ExternalOrInternalAction({
     <a className={className} href={item.href} target="_blank" rel="noreferrer">
       {item.label}
     </a>
+  );
+}
+
+function TikTokProfileEmbed() {
+  const embedRef = useRef<HTMLQuoteElement>(null);
+
+  const renderTikTokEmbed = useCallback(() => {
+    const node = embedRef.current;
+    const tiktok = (window as TikTokEmbedWindow).tiktokEmbed;
+
+    if (!node || node.id || typeof tiktok?.lib?.render !== "function") {
+      return;
+    }
+
+    void tiktok.lib.render([node]);
+  }, []);
+
+  useEffect(() => {
+    const timers = [0, 600, 1600].map((delay) =>
+      window.setTimeout(renderTikTokEmbed, delay)
+    );
+
+    return () => {
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, [renderTikTokEmbed]);
+
+  return (
+    <article className="glass-panel border-2 border-[var(--line)] bg-[rgba(225,205,168,0.94)] p-5 md:col-span-2">
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,0.88fr)_minmax(288px,1.12fr)] lg:items-start">
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--accent)]">
+            Video series
+          </p>
+          <h3 className="mt-3 text-xl tracking-[-0.04em] text-[var(--ink)]">
+            AI safety explainers
+          </h3>
+          <p className="mt-3 text-sm leading-6 text-[var(--ink-soft)]">
+            Short-form videos translating technical AI safety ideas into language
+            built for policy audiences, public-interest technologists, and people
+            trying to follow the governance debate without getting buried in lab
+            jargon.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a
+              className="inline-flex border-2 border-[var(--line)] bg-[var(--panel)] px-4 py-2.5 text-sm text-[var(--ink)] transition-colors hover:bg-[var(--panel-deep)]"
+              href={TIKTOK_PROFILE_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open TikTok
+            </a>
+            <a
+              className="inline-flex border-2 border-[var(--line)] bg-[var(--panel)] px-4 py-2.5 text-sm text-[var(--ink)] transition-colors hover:bg-[var(--panel-deep)]"
+              href="https://linkedin.com/in/mattramirez"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div className="min-w-0 overflow-hidden border-2 border-[var(--line)] bg-[#f1dfbf] p-3">
+          <blockquote
+            ref={embedRef}
+            className="tiktok-embed"
+            cite={TIKTOK_PROFILE_URL}
+            data-unique-id="mclovingrace"
+            data-embed-from="oembed"
+            data-embed-type="creator"
+            style={{ maxWidth: "780px", minWidth: "288px" }}
+          >
+            <section>
+              <a
+                target="_blank"
+                href={`${TIKTOK_PROFILE_URL}?refer=creator_embed`}
+                rel="noreferrer"
+              >
+                @mclovingrace
+              </a>
+            </section>
+          </blockquote>
+        </div>
+      </div>
+      <Script
+        id="tiktok-creator-embed"
+        src="https://www.tiktok.com/embed.js"
+        strategy="lazyOnload"
+        onLoad={renderTikTokEmbed}
+        onReady={renderTikTokEmbed}
+      />
+    </article>
   );
 }
 
@@ -473,6 +579,7 @@ export default function PortfolioInterface({
                         ) : null}
                       </article>
                     ))}
+                    {currentModule.key === "work" ? <TikTokProfileEmbed /> : null}
                   </div>
                 ) : null}
               </motion.div>
